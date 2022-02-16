@@ -721,5 +721,3 @@ int main(void)
     initialize();
     run();
 }
-
-// D:\1jbk\CProjectCLion\666
