@@ -86,7 +86,7 @@ MCQ *createQuestion(char *, int, int, char **, int *);
 
 void initialize()
 {
-    mulChoiceQuiz = calloc(sizeof(MCQ), QUIZSIZE);
+    mulChoiceQuiz = calloc(QUIZSIZE, sizeof(MCQ));
 }
 
 void reinitialize()
@@ -129,7 +129,7 @@ char *getString(char *output)
     printf("%s", output);
     fgets(buffer, LENGTH_MAX, stdin);
     size_t inputLength = strlen(buffer);
-    char *input = calloc(sizeof(char), inputLength);
+    char *input = calloc(inputLength, sizeof(char));
     strncpy(input, buffer, inputLength - 1);
     input[inputLength] = '\0';
     return input;
@@ -247,7 +247,7 @@ int getAnswers(int index)
 {
     int numberOfAnswers = getNumberOfAnswersChosen(index);
     int numberOfCorrectChoicesChosen = 0;
-    int *choicesChosen = calloc(sizeof(int), numberOfAnswers);
+    int *choicesChosen = calloc(numberOfAnswers, sizeof(int));
     for (int i = 0; i < numberOfAnswers; i++)
     {
         int choiceNumber = getChoiceAnswer(index, (i + 1), numberOfAnswers, choicesChosen);
@@ -404,8 +404,8 @@ void addNewMCQ()
     int     score = getInteger("Score: ");
     int     numberOfChoices = getInteger("Number of Choices(Up to 20): ");
     numberOfChoices = (numberOfChoices>CHOICE_MAX)?CHOICE_MAX:numberOfChoices;
-    char    **choices = calloc(sizeof(char *), numberOfChoices);
-    int     *isCorrect = calloc(sizeof(int), numberOfChoices);
+    char    **choices = calloc(numberOfChoices, sizeof(char *));
+    int     *isCorrect = calloc(numberOfChoices, sizeof(int));
     for (int i = 0; i < numberOfChoices; i++)
     {
         printf("Choice %d: ", (i + 1));
@@ -698,7 +698,7 @@ char *readStringFromFile(FILE *file)
         return NULL;
     }
     size_t length = strlen(buffer);
-    char *question = calloc(sizeof(char), length);
+    char *question = calloc(length, sizeof(char));
     strncpy(question, buffer, length - 1);
     question[length] = '\0';
     return question;
@@ -707,7 +707,7 @@ char *readStringFromFile(FILE *file)
 MCQ *createQuestion(char *question, int score, int numberOfChoices, char **choices
                         , int *isCorrect)
 {
-    MCQ *aMultipleChoiceQuestion = calloc(sizeof(MCQ), 1);
+    MCQ *aMultipleChoiceQuestion = calloc(1, sizeof(MCQ));
     aMultipleChoiceQuestion->question = question;
     aMultipleChoiceQuestion->score = score;
     aMultipleChoiceQuestion->numberOfChoices = numberOfChoices;
